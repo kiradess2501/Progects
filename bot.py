@@ -13,10 +13,12 @@ words_to_match = ['hey', 'hello', 'hi', 'sup', 'greetings',
 				'how are you']
 				
 print("Successfull")
-cache = []
 
 # Function to run the bot
 def run_bot():
+	# Cache file where comment Id's are stored
+	f = open("commentIDcache.txt", "+r")
+	
 	print("Grabbing subreddit...")
 	subreddit = r.get_subreddit("test")
 	comments = subreddit.get_comments(limit=25)
@@ -27,13 +29,15 @@ def run_bot():
 		
 		for commentWord in comment_text:
 				for word in words_to_match:
-					if word == commentWord and comment.id not in cache:
+					if word == commentWord and comment.id not in f.read():
 						print("Comment found, ID: " + comment.id)
 						print ('Replying...')
 						comment.reply("This is a test bot. Just sayin' hey")
-						cache.append(comment.id)
+						print ('Writing Comment ID to Cache')
+						f.write(comment.id + "\n")
+						print ('Cache Updated')
 	time.sleep(10)
-
+	f.close()
 
 def main():		
 	while True:
