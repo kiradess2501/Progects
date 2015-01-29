@@ -7,4 +7,16 @@ Put ideas for projects here:
 	* sudoku
 	* chess
 
+Things that need to be worked on
+	* Organizing the subreddit and writing things down in the sidebar
+	
+	* Finding a public ventrilo/teamspeak server for now to voice 
+	communicate during events. If things take off, I wouldn't mind 
+	paying for a dedicated server.
+
+	* Creating a guide for people interested
+	rules and guidelines for the events
+
 Put ongoing projects here:
+	* Reddit Bot
+	* IRC
