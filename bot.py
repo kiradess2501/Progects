@@ -1,7 +1,7 @@
 import praw
 import time
 
-r = praw.Reddit(user_agent = "by /u/NEET_Here and /u/triple-take")
+r = praw.Reddit(user_agent = "Test bot for /r/progects by /u/NEET_Here and /u/triple-take")
 
 print("Logging in...")
 r.login()
