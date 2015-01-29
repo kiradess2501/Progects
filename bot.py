@@ -8,9 +8,13 @@ Registering redditers for events
 Organizing teams
 and anything else that may be required
 
-by /u/NEET_Here
+right now this bot auto replies to certain keywords, just testing.
+in /r/test
+
+by /u/NEET_Here and /u/triple-take
 ''')
 
+print("Logging in...")
 r.login()
 
 # List of words the bot will reply to
@@ -18,33 +22,34 @@ words_to_match = ['hey', 'hello', 'hi', 'sup', 'greetings',
 				'howdy', 'bonjour','good day', 'good morning', 
 				'hiya', 'how goes it', 'whats up',
 				'how are you']
-
+print("Successfull")
 cache = []
 
 # Function to run the bot
 def run_bot():
-	subreddit = r.get_subreddit('test')
-	comments = subreddit.get_comments(limit=25)
+    print("Grabbing subreddit...")
+    subreddit = r.get_subreddit('test')
+    comments = subreddit.get_comments(limit=25)
+
+    for comment in comments:
+        print("Reading comment...")
+        comment_text = comment.body.lower()
 	
-	for comment in comments:
-		comment_text = comment.body.lower()
+        # Store the words in each comment in a list,
+        # then search the list for a word from the provided
+        comment_text = comment_text.split(' ')
 		
-		# Bot was replying to any words that contained the string
-		# regardless of whether it was singular
-		# So I'm trying to split them
-		comment_text = comment_text.split(' ')
-		
-		for word in words_to_match:
-			if comment.id not in cache and word in comment_text:
-				print ('Replying...')
-				comment.reply('This is a test bot. Just sayin\' {0}'.format(word))
-				cache.append(comment.id)
-				time.sleep(2)
+        for commentWord in words_to_match:
+            for word in words_to_match:
+                if word == commentWord and comment.id not in cache:
+                    print("Comment found, ID: " + comment.id)
+                    print ('Replying...')
+                    comment.reply("This is a test bot. Just sayin' hey")
+                    cache.append(comment.id)
 
 def main():		
-	while True:
-		run_bot()
-		time.sleep(10)
+    while True:
+        run_bot()
+        time.sleep(10)
 
-if __name__ = '__main__':
-	main()
+main()
