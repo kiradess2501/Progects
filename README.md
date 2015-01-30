@@ -5,7 +5,7 @@ Our [IRC channel](http://webchat.freenode.net/) will be #Progects @ Freenode
 
 Current Work is being done on the reddit bot in Python 3 with PRAW
 
-  Short Term Goals:
+    Short Term Goals:
   
   * Be able to search for specific strings, store the comment id in a separate text file, and not reply to the same comments again
   
