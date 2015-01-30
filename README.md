@@ -9,7 +9,7 @@ Short Term Goals:
   
   * Be able to search for specific strings, store the comment id in a separate text file, and not reply to the same comments again
   
-  Eventually:
+Eventually:
   
   * Receive commands to (un)register self or teams to events
   * Organize teams based on registration commands
