@@ -1,6 +1,7 @@
 import praw
 import time
 
+
 class Bot():
 	
 	# List of words the bot will reply to
@@ -80,4 +81,5 @@ def main():
 		# Argument for bot.runbot is username
 		bot.runbot('')
 
-main()
+if __name__ == '__main__':
+	main()
