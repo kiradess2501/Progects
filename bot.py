@@ -13,6 +13,7 @@ words_to_match = ['hey', 'hello', 'hi', 'sup', 'greetings',
                 'howdy', 'bonjour','good day', 'good morning',
                 'hiya', 'how goes it', 'whats up',
                 'how are you']
+cache = []
 
 print("Successfull login...")
 
