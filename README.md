@@ -3,9 +3,6 @@ Anything to do with /r/Progects, the only subreddit dedicated to virtual hackath
 
 Our [IRC channel](http://webchat.freenode.net/) will be #Progects @ Freenode
 
-This is where our current work is at for the subreddit
-https://github.com/MetalManuel/Progects
-
 Current Work is being done on the reddit bot in Python 3 with PRAW
 
 Short Term Goals:
