@@ -15,7 +15,7 @@ Short Term Goals:
   * Organize teams based on registration commands
   * Scan for threads that have dates and send out notifications to registered people prior to event
   
-  Current Bugs:
+Current Bugs:
   
   * Bot does not currently read the whole text file for unique string ID's to filter out of search. I"m guessing that it is only reading the first line, although I could be wrong. Haven't tested.
   
