@@ -14,6 +14,7 @@ Eventually:
   * Receive commands to (un)register self or teams to events
   * Organize teams based on registration commands
   * Scan for threads that have dates and send out notifications to registered people prior to event
+  * If error occurs, create log file and email it
   
 Current Bugs:
   
