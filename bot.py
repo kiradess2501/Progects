@@ -8,7 +8,7 @@ class Bot():
 	cache = []
 	
 	# List of words the bot will reply to
-	words_to_match = ['bison', 'spiderman']
+	words_to_match = ['bison', 'spiderman', 'spidey']
 					
 	def __init__(self, cacheFile):
 		self.cacheFile = cacheFile
