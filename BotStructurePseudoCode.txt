@@ -1,0 +1,23 @@
+load cache of comments already responded to
+load notification list
+load registered user list
+login - error and wait if can't
+runBot
+    checkComments()
+        if summoned, respond appropriately
+            register
+            notify
+            removeUser
+            returnGroups
+        if someone says bison, respond
+    
+    if twoDaysBeforeEvent
+        notifyUsers
+        makeGroups
+    
+    else if dayBeforeEvent
+        post thread with groups and users, send PMs
+    
+    checkPM()
+        if contains unsubscribeMe
+            delete user from notification list
