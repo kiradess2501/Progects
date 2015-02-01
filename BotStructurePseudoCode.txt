@@ -21,3 +21,7 @@ runBot
     checkPM()
         if contains unsubscribeMe
             delete user from notification list
+            
+
+while stillRunning
+    runBot()
