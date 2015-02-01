@@ -7,7 +7,8 @@ class Bot():
 	# List of words the bot will reply to
 	words_to_match = ['bison']
 					
-	def __init__(self):
+	def __init__(self, cacheFile):
+		self.cacheFile = cacheFile
 		''' Logs the bot into Reddit'''
 		
 		self.r = praw.Reddit(user_agent = "Test bot for /r/progects by /u/NEET_Here and /u/triple-take")
@@ -21,22 +22,20 @@ class Bot():
 		print("Successfull login...")
 		
 
+	def cacheCreate(self, cacheFile):
+		""" Imports stored Comment ID's into temporary cache"""
+		self.cache = []
+		with open(self.cacheFile, 'r') as f:
+			for line in f.read():
+				line = line.rstrip('\n')
+				self.cache.append(line)
+				
 
-
-	def runbot(self, botName):
-		''' Function to run bot. The argument botName is the Reddit
-		username of the bot'''
+	def runbot(self):
+		''' Function to run bot'''
 		
-		# Temporary cache storage
-		cache = []
-		
-		# Cache file where comment Id's are stored
-		f = open("commentIDcache.txt", "+r")
-		print ("Opening file for already replied comments...")
-		
-		# Updates cache list
-		for line in f:
-			cache.append(line)
+		# Create cache of comment ID's
+		self.cacheCreate(self.cacheFile)
 		
 			
 		print("Grabbing subreddit...")
@@ -49,37 +48,39 @@ class Bot():
 		for comment in comments:
 			print("Reading comment...")
 			comment_text = comment.body.lower().split(' ')
+			comment_text = [x.strip('?!@#$%^&*"') for x in comment_text]
 			for commentWord in comment_text:
 				for word in self.words_to_match:
 					author = str(comment.author).lower()
-					botName =  botName.lower()
-					if word == commentWord and comment.id not in f.read().replace('\n', '')\
-					 and author != botName:
+					self.botName =  self.botName.lower()
+					if word == commentWord and comment.id not in self.cache\
+					 and author != self.botName:
 						print("Comment found, ID: " + comment.id)
 						print ('Replying...')
 						comment.reply("You are the last airbender.")
 						print ('Writing Comment ID to Cache')
 						
 						# add comment id to cache and cache file simultaneously
-						cache.append(comment.id)
-						f.write(comment.id + "\n")
+						self.cache.append(comment.id)
 						
-						# Reset the read function.
-						# f.read() reads till the end of the text file
-						# and stops there.
-						f.seek(0)
 						print ('Cache Updated')
 						
 						# rate exception avoided here
 						time.sleep(5)
-		f.close()
+						
+		# Updates cache file with new items				
+		with open(self.cacheFile, 'w+') as f:
+			for item in self.cache:
+				f.write(item + '\n')
+				
 		time.sleep(10)
 
 def main():
-	bot = Bot()
+	# Add in cache file upon creation of class object
+	bot = Bot('commentIDcache.txt')
+	
 	while True:
-		# Argument for bot.runbot is username
-		bot.runbot('progects_bot1')
+		bot.runbot()
 
 if __name__ == '__main__':
 	main()
