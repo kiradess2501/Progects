@@ -8,7 +8,7 @@ class Bot():
 	cache = []
 	
 	# List of words the bot will reply to
-	words_to_match = ['bison']
+	words_to_match = ['bison', 'spiderman']
 					
 	def __init__(self, cacheFile):
 		self.cacheFile = cacheFile
@@ -32,16 +32,11 @@ class Bot():
 		with open(self.cacheFile, 'r') as f:
 			self.cache = f.read().split('\n')
 			self.cache = [x for x in self.cache if x != '']
-				
+					
 
 	def runbot(self):
 		''' Function to run bot'''
 		
-		# This variable will make it so the bot won't open/write
-		# to the file unless something is appended to the cache
-		# list. Meaning it won't needlessly opening/close the file. 
-		# Implemented in line 75 and 84.
-		self.appended = False
 		
 		# Creates temp cache storage
 		self.cacheCreate()
@@ -67,25 +62,23 @@ class Bot():
 					 and author != self.botName:
 						print("Comment found, ID: " + comment.id)
 						print ('Replying...')
-						comment.reply("You are the last airbender.")
+						comment.reply("We are now in a spidey thread!")
 						print ('Writing Comment ID to Cache')
 						
 						# add comment id to cache and cache file simultaneously
 						self.cache.append(comment.id)
 						
-						self.appended = True
+						# Updates cache file with new comment ID
+						print ('Updating cache file...')				
+						with open(self.cacheFile, 'w+') as f:
+							for item in self.cache:
+								f.write(item + '\n')
 						
 						print ('Cache Updated')
 						
 						# rate exception avoided here
 						time.sleep(5)
-						
-		# Updates cache file with new items
-		if self.appended == True:
-			print ('Updating cache file...')				
-			with open(self.cacheFile, 'w+') as f:
-				for item in self.cache:
-					f.write(item + '\n')
+
 				
 		time.sleep(10)
 
