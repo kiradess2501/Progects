@@ -8,15 +8,15 @@ class Bot():
 	cache = []
 	
 	# List of words the bot will reply to
-	comment_words = []
-	comment_reply = ''
+	comment_words = ['register']
+	registration_reply = 'Thank you for registering'
 	
 	# Required for functions 
 	subreddit =  None
 	comments = None
 	
 	# Subreddits to search for
-	subreddits = []
+	subreddits = ['progects', 'test']
 	subredditstring = ''
 					
 	def __init__(self, cache_file):
@@ -27,12 +27,9 @@ class Bot():
 		through
 		
 		Comments to search for are in self.comment_words
-		Reply with is in self.comment_reply
 		Subreddits is in self.subreddits
 		'''
 			
-		print ("DON'T FORGET TO APPEND THE NECESSARY WORDS TO THE BOT"
-				"SUCH AS COMMENTS, COMMENT REPLY, AND SUBREDDITS")
 				
 		self.r = praw.Reddit(user_agent = "Test bot for /r/progects by /u/NEET_Here and /u/triple-take")
 
@@ -55,10 +52,10 @@ class Bot():
 			self.cache = [x for x in self.cache if x != '']
 
 			
-	def comment_search(self):
+	def comment_search(self, word_list, reply_with):
 		'''
 		Searches for comments in the comment_words list and replies
-		to them
+		to them. Reply with is the response string.
 		'''
 			
 		self.comments = self.subreddit.get_comments(limit=25)
@@ -75,7 +72,7 @@ class Bot():
 			comment_text = [x.strip('?!@#$%^&*"') for x in comment_text]
 			
 			for commentWord in comment_text:
-				for word in self.comment_words:
+				for word in word_list:
 					
 					#
 					author = str(comment.author).lower()
@@ -84,7 +81,7 @@ class Bot():
 					 and author != self.bot_name:
 						print("Comment found, ID: " + comment.id)
 						print ('Replying...')
-						comment.reply("We are now in a spidey thread!")
+						comment.reply(reply_with)
 						print ('Writing Comment ID to Cache')
 						
 						# add comment id to cache and cache file simultaneously
@@ -119,7 +116,7 @@ class Bot():
 		self.subreddit = self.r.get_subreddit(self.subredditstring)
 		
 		# Searches comments
-		self.comment_search()
+		self.comment_search(self.comment_words, self.registration_reply)
 
 		# Used to stop bot for certain amount of time to not 
 		# overload the server		
@@ -128,15 +125,13 @@ class Bot():
 def main():
 	
 	bot = Bot('commentIDcache.txt')
-	bot.comment_words.extend(['spidey', 'spiderman'])
-	bot.comment_reply = 'Progects bot checking in on the real spidey'
-	bot.subreddits.extend(['test'])
 	
-	i = 0
+	i = 1
 	while True:
+		print ('Iteration: {0}'.format(i))
 		bot.runbot()
 		i += 1
-		print ('Iteration: {0}'.format(i))
+
 
 
 if __name__ == '__main__':
