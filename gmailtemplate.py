@@ -64,6 +64,7 @@ class Gmail:
 			print ('Failure')
 		
 def main():
+	pass
 
 if __name__ == '__main__':
 	main()
