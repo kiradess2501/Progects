@@ -6,6 +6,7 @@ class Bot():
 	
 	# Cache storage
 	cache = []
+	cache_file = 'commentIDcache.txt'
 	
 	# List of words the bot will reply to
 	comment_words = ['register']
@@ -18,15 +19,9 @@ class Bot():
 	 # searching multiple subreddits, or a single subreddit
 	subredditstring = ''
 					
-	def __init__(self, cache_file):
-		self.cache_file = cache_file
+	def __init__(self):
 		''' 
-		Logs the bot into Reddit. Use append or extend to add keywords
-		for the comment search function and add subreddits to search
-		through
-		
-		Comments to search for are in self.comment_words
-		Subreddits is in self.subreddits
+		Logs the bot into Reddit. 
 		'''
 			
 				
@@ -123,7 +118,7 @@ class Bot():
 
 def main():
 	
-	bot = Bot('commentIDcache.txt')
+	bot = Bot()
 	
 	i = 1
 	while True:
