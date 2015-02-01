@@ -8,6 +8,9 @@ from email import encoders
 
 
 class Gmail:
+	'''To use this class, create the object with initialized variables.
+		Then run functions in order '''
+	
 	def __init__(self, username, password):
 		''' When initialized put username and password as 1st
 			 and 2nd arg'''
@@ -15,19 +18,21 @@ class Gmail:
 		self.password = password
 		
 	def input_address(self, to_addr, from_addr):
-		'''1st argument is the 'to address' and 2nd is the
-			'from address\''''
+		'''1st argument is the email addresss that you're mailing to and
+			2nd is your email address'''
 		self.to_addr = to_addr
 		self.from_addr = from_addr
 	
 	def email_content(self, subject, text, attachments):
 		''' Subject of email, body of text, list of attachment files
-			in the same directory as script'''
+			in the same directory as script (e.g. ['file1.txt',
+			'file2.txt']'''
 		self.subject = subject
 		self.text = text
 		self.attachments = attachments
 	def server(self, server, port):
-		'''Server and Port'''
+		'''Server and Port of the service you're using
+			For reference: Gmail server and port = smtp.gmail.com:587'''
 		self.server = server
 		self.port = port
 	
