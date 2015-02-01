@@ -53,7 +53,7 @@ class Bot():
 				for word in self.words_to_match:
 					author = str(comment.author).lower()
 					botName =  botName.lower()
-					if word == commentWord and comment.id not in f.read()\
+					if word == commentWord and comment.id not in f.read().replace('\n', '')\
 					 and author != botName:
 						print("Comment found, ID: " + comment.id)
 						print ('Replying...')
@@ -79,7 +79,7 @@ def main():
 	bot = Bot()
 	while True:
 		# Argument for bot.runbot is username
-		bot.runbot('')
+		bot.runbot('progects_bot1')
 
 if __name__ == '__main__':
 	main()
