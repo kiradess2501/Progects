@@ -11,12 +11,11 @@ class Bot():
 	comment_words = ['register']
 	registration_reply = 'Thank you for registering'
 	
-	# Required for functions 
-	subreddit =  None
-	comments = None
-	
 	# Subreddits to search for
 	subreddits = ['progects', 'test']
+	
+	 # This is used in the runbot function to meet the criteria for
+	 # searching multiple subreddits, or a single subreddit
 	subredditstring = ''
 					
 	def __init__(self, cache_file):
