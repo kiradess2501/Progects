@@ -5,15 +5,15 @@ Our [IRC channel](http://webchat.freenode.net/) will be #Progects @ Freenode
 
 Current Work is being done on the reddit bot in Python 3 with PRAW
 
-Short Term Goals:
-  
-  * Be able to search for specific strings, store the comment id in a separate text file, and not reply to the same comments again
+Short term goals:
+  * Register people as teams or self for events. Thinking about using "!" to proclaim commands (e.g. !register)
+  * Register people for notifications
+  * Be able to unregister for event and/or notifications
+  * Organize people in teams
+  * Notify people based on upcoming events and threads created by mods
   
 Eventually:
   
-  * Receive commands to (un)register self or teams to events
-  * Organize teams based on registration commands
-  * Scan for threads that have dates and send out notifications to registered people prior to event
   * If error occurs, create log file and email it
   
 Current Bugs:
